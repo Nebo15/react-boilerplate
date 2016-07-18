@@ -42,7 +42,6 @@ server.get('*', function (req, res, next) {
 
       getReduxPromise().then(()=> {
           let reduxState = escape(JSON.stringify(store.getState()));
-          console.log(renderProps);
           let html = ReactDOMServer.renderToString(
             <Provider store={store}>
               { <RouterContext {...renderProps}/> }

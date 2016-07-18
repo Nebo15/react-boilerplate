@@ -4,7 +4,8 @@
   "description": "Boilerplate for React app, that is using Redux, React-router and Express",
   "repository": "https://github.com/Nebo15/react-boilerplate.git",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app/server"
   },
   "author": "Alexey Bondarenko <alexeybondarenko@me.com> (http://bondalex.com/)",
   "license": "MIT",
