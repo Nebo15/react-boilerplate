@@ -18,16 +18,18 @@
         content="Boilerplate for universal React application, using react-router, redux and Express"/>
 
 
-  <link rel="stylesheet" href="/build/style.css">
+  <!--<link rel="stylesheet" href="/build/style.css">-->
 
 </head>
 <body class="is-home">
 <div id="root"><%- html %></div>
 
+<% if (reduxState) { %>
 <script type="text/javascript" charset="utf-8">
   window.__REDUX_STATE__ = '<%= reduxState %>';
 </script>
+<% } %>
 
-<script src="/build/bundle.js"></script>
+<!--<script src="/build/bundle.js"></script>-->
 </body>
 </html>

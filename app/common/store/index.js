@@ -2,6 +2,8 @@
 import { createStore, applyMiddleware, compose} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
+import rootReducer from '../reducers'
+
 let middlewares = [thunkMiddleware];
 
 if (__DEV__) {
@@ -15,7 +17,7 @@ const createStoreWithMiddleware = compose(
 
 export function configureStore (initialState) {
 
-  const store = createStoreWithMiddleware((state) => state, initialState);
+  const store = createStoreWithMiddleware(rootReducer, initialState);
 
   //if (module.hot) {
   //  // Enable Webpack hot module replacement for reducers

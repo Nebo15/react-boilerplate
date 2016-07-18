@@ -7,9 +7,9 @@ class MainLayout extends Component {
         return (
           <div>
             <nav>
-              <Link to="/">Home</Link>
-              <Link to="/about">About</Link>
+              <Link to="/">Home</Link> <Link to="/about">About</Link>
             </nav>
+            <hr/>
             <main>
               {this.props.children}
             </main>

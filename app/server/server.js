@@ -13,6 +13,8 @@ import { Provider } from 'react-redux';
 import {configureStore} from '../common/store';
 import routes from '../common/routes'
 
+import apiRoutes from './api';
+
 let server = new Express();
 
 server.set('port', process.env.PORT || 8080);
@@ -20,6 +22,7 @@ server.set('port', process.env.PORT || 8080);
 server.set('views', path.join(__dirname, 'views'));
 server.set('view engine', 'ejs');
 
+server.use('/api', apiRoutes);
 server.get('*', function (req, res, next) {
 
   let history = useRouterHistory(useQueries(createMemoryHistory))();
