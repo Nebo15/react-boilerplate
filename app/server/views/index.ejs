@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Boilerplate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#fff">
+
+  <meta name="keywords"
+        content="boilerplate, react, redux, isomorphic, universal, react-router">
+  <meta name="description"
+        content="Boilerplate for universal React application, using react-router, redux and Express">
+
+  <meta property="og:title" content="React Boilerplate"/>
+  <meta property="og:site_name" content="React Boilerplate"/>
+  <meta property="og:description"
+        content="Boilerplate for universal React application, using react-router, redux and Express"/>
+
+
+  <link rel="stylesheet" href="/build/style.css">
+
+</head>
+<body class="is-home">
+<div id="root"><%- html %></div>
+
+<script type="text/javascript" charset="utf-8">
+  window.__REDUX_STATE__ = '<%= reduxState %>';
+</script>
+
+<script src="/build/bundle.js"></script>
+</body>
+</html>
