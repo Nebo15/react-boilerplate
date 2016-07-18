@@ -2,7 +2,7 @@
   "name": "react-boilerplate",
   "version": "1.0.0",
   "description": "Boilerplate for React app, that is using Redux, React-router and Express",
-  "main": "index.js",
+  "repository": "https://github.com/Nebo15/react-boilerplate.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
