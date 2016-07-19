@@ -35,7 +35,7 @@ let resources  = {
 const assets = require('../../static/webpack-assets.json');
 Object.keys(assets).map(function (key) {
   assets[key].js && resources.js.push(assets[key].js);
-  assets[key].css && resources.js.push(assets[key].css);
+  assets[key].css && resources.css.push(assets[key].css);
 });
 
 server.use('/static', Express.static(path.join(__dirname, '../../static')));

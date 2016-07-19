@@ -3,6 +3,10 @@ import connect from 'react-redux/lib/components/connect'
 import {getPosts} from '../../actions/posts'
 import Link from 'react-router/lib/Link'
 
+if (__CLIENT__) {
+  require('../../../../assets/sass/style.sass');
+}
+
 @connect((state, ownProps) => {
   const result = state.getIn(['posts','indexPagePosts']);
   return {

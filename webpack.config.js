@@ -1,7 +1,9 @@
-
 var path = require('path');
 var webpack = require('webpack');
 var AssetsPlugin = require('assets-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+var extractSASS = new ExtractTextPlugin('[name].[hash].css');
 
 var DEBUG = !(process.env.NODE_ENV === 'production');
 var env = {
@@ -15,12 +17,14 @@ var config = {
     app: './app/client'
   },
   resolve: {
-    root: [ path.join(__dirname, 'app') ]
+    root: [
+      'app'
+    ]
   },
   output: {
     path: path.join(__dirname, 'static'),
     publicPath: '/static/',
-    filename: DEBUG ? '[name].js' : '[name].[chunkhash].js'
+    filename: '[name].[hash].js'
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -28,8 +32,11 @@ var config = {
       __DEV__: DEBUG,
       __CLIENT__: true
     }),
-    new AssetsPlugin({ path: path.join(__dirname, 'static') })
+    new AssetsPlugin({path: path.join(__dirname, 'static')})
   ],
+  Sassport: {
+    indentedSyntax: true
+  },
   module: {
     loaders: [
       {
@@ -37,6 +44,10 @@ var config = {
         loader: 'babel',
         exclude: /node_modules/,
         include: __dirname
+      },
+      {
+        test: /\.sass$/,
+        loaders: ['style','css', 'autoprefixer', 'sassport']
       }
     ]
   }
@@ -50,26 +61,24 @@ if (DEBUG) {
   ];
 
   config.plugins = config.plugins.concat([
-    new webpack.HotModuleReplacementPlugin(),
-    //new webpack.optimize.CommonsChunkPlugin({
-    //  name: 'vendor',
-    //  filname: 'vendor.js'
-    //})
+    new webpack.HotModuleReplacementPlugin()
   ]);
   config.output.publicPath = 'http://localhost:3030/static/';
   config.module.loaders[0].query = {
-    "env": {
-      "development": {
-        "presets": ["react-hmre"]
+    'env': {
+      'development': {
+        'presets': ['react-hmre']
       }
     }
   };
+
 } else {
+
+  config.module.loaders[1].loader = extractSASS.extract(['css?minimize', 'autoprefixer', 'sassport']);
+  delete config.module.loaders[1].loaders;
+
   config.plugins = config.plugins.concat([
-    //new webpack.optimize.CommonsChunkPlugin({
-    //  name: 'vendor',
-    //  filname: '[name].[chunkhash].js'
-    //}),
+    extractSASS,
     new webpack.optimize.UglifyJsPlugin()
   ]);
 }
