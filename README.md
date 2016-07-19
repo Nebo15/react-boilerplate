@@ -1,6 +1,6 @@
 # React Boilerplate
 
-Boilerplate for React Univeral application, that is using Redux, React Router, Immutable JS and Express
+Boilerplate for React Univeral application, that is using Redux, React Router and Express
 
 Project Structure: 
 
