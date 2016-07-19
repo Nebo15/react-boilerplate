@@ -11,9 +11,7 @@ Project Structure:
 /app/server - server side configuration
 ```
 
-## Server side rendering
-
-Example of page
+## Universal page
 
 ```js
 import React, {Component, PropTypes} from 'react';
