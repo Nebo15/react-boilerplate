@@ -27,7 +27,6 @@ export default class IndexPage extends Component {
   }
 
   render() {
-    console.log(this.props.posts);
     return (
       <div>
         <h1>

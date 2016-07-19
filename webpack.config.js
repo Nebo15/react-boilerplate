@@ -19,7 +19,7 @@ var config = {
   },
   output: {
     path: path.join(__dirname, 'static'),
-    pathPublic: '/static/',
+    publicPath: '/static/',
     filename: DEBUG ? '[name].js' : '[name].[chunkhash].js'
   },
   plugins: [
