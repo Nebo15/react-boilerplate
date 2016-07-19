@@ -1,17 +1,22 @@
 
 import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux'
+import connect from 'react-redux/lib/components/connect'
 import {getPost} from '../../actions/posts'
-import {Link} from 'react-router'
 
-@connect((state) => {
-  const result = state.posts.get('result');
-  return state.posts.getIn(['entities', 'posts', result]).toJS();
+@connect((state, ownProps) => {
+  return state.getIn(['posts', 'entities', 'posts', ownProps.params.id]).toJS();
 }, {getPost})
 export default class PostPage extends Component {
 
   static fetchData ({store, params}) {
     return store.dispatch(getPost(params.id));
+  }
+
+  fetchData() {
+    this.props.getPost(this.props.params.id);
+  }
+  componentDidMount() {
+    this.fetchData();
   }
 
   render() {

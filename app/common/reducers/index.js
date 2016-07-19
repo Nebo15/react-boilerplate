@@ -1,5 +1,5 @@
 
-import {combineReducers} from 'redux'
+import {combineReducers} from 'redux-immutable'
 
 import posts from './posts'
 export default combineReducers({

@@ -1,21 +1,33 @@
 import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux'
+import connect from 'react-redux/lib/components/connect'
 import {getPosts} from '../../actions/posts'
-import {Link} from 'react-router'
+import Link from 'react-router/lib/Link'
 
-@connect((state) => {
-  const result = state.posts.get('result');
+@connect((state, ownProps) => {
+  const result = state.getIn(['posts','indexPagePosts']);
   return {
-    posts: result.map(id => state.posts.getIn(['entities', 'posts', id])).toJS()
+    posts: result.map(id => state.getIn(['posts','entities', 'posts', id])).toJS()
   }
 }, {getPosts})
 export default class IndexPage extends Component {
+
 
   static fetchData ({store}) {
     return store.dispatch(getPosts());
   }
 
+  fetchData() {
+    this.props.getPosts();
+  }
+  //componentWillReceiveProps() {
+  //  this.fetchData();
+  //}
+  componentDidMount() {
+    this.fetchData();
+  }
+
   render() {
+    console.log(this.props.posts);
     return (
       <div>
         <h1>

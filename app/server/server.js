@@ -3,12 +3,17 @@ import path from 'path';
 
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { useRouterHistory, RouterContext, match, Router} from 'react-router';
+import useRouterHistory from 'react-router/lib/useRouterHistory';
+import RouterContext from 'react-router/lib/RouterContext';
+import match from 'react-router/lib/match';
+import Router from 'react-router/lib/Router';
 
-import { createMemoryHistory, useQueries } from 'history';
+import createMemoryHistory from 'history/lib/createMemoryHistory';
+import useQueries from 'history/lib/useQueries';
+
 import Promise from 'bluebird';
 
-import { Provider } from 'react-redux';
+import Provider from 'react-redux/lib/components/Provider';
 
 import {configureStore} from '../common/store';
 import routes from '../common/routes'
@@ -22,6 +27,22 @@ server.set('port', process.env.PORT || 8080);
 server.set('views', path.join(__dirname, 'views'));
 server.set('view engine', 'ejs');
 
+let resources  = {
+  js: [],
+  css: []
+};
+
+if ( process.env.NODE_ENV === 'production' ) {
+  const assets = require('../../static/webpack-assets.json');
+  resources.js.push('/static/' + assets.app.js);
+} else {
+  resources.js = resources.js.concat([
+    'http://localhost:3030/static/dev.js',
+    'http://localhost:3030/static/app.js'
+  ])
+}
+
+server.use('/static', Express.static(path.join(__dirname, '../../static')));
 server.use('/api', apiRoutes);
 server.get('*', function (req, res, next) {
 
@@ -52,7 +73,7 @@ server.get('*', function (req, res, next) {
           );
 
           if (getCurrentUrl() === reqUrl) {
-            res.render('index', {html, reduxState});
+            res.render('index', {html, reduxState, resources});
           } else {
             res.redirect(302, getCurrentUrl());
           }

@@ -24,7 +24,6 @@ export function getPosts () {
       })
       .then(function(response) {
         response = normalize(response, arrayOf(post));
-
         dispatch({
           type: POSTS_RECEIVED,
           payload: response
@@ -48,7 +47,6 @@ export function getPost (id) {
       .then(function(response) {
 
         response = normalize(response, post);
-
         dispatch({
           type: POST_RECEIVED,
           payload: response

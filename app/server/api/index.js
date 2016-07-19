@@ -12,11 +12,27 @@ const posts = [
     id: '1',
     title: 'post 2',
     description: 'post 2 description'
+  },
+  {
+    id: '2',
+    title: 'post 3',
+    description: 'post 3 description'
   }
 ];
 
+//router.use((req, res, next) => {
+//  setTimeout(() => {
+//    next()
+//  }, 1000);
+//});
+
 router.get('/posts', function (req, res, next) {
-  return res.json(posts);
+  return res.json(posts.map((item) => {
+    return {
+      id: item.id,
+      title: item.title
+    };
+  }));
 });
 
 router.get('/posts/:id', function (req, res, next) {

@@ -1,5 +1,8 @@
 
-import { createStore, applyMiddleware, compose} from 'redux';
+import createStore from 'redux/lib/createStore';
+import applyMiddleware from 'redux/lib/applyMiddleware';
+import compose from 'redux/lib/compose';
+
 import thunkMiddleware from 'redux-thunk';
 
 import rootReducer from '../reducers'
@@ -19,13 +22,13 @@ export function configureStore (initialState) {
 
   const store = createStoreWithMiddleware(rootReducer, initialState);
 
-  //if (module.hot) {
-  //  // Enable Webpack hot module replacement for reducers
-  //  module.hot.accept('../reducers', () => {
-  //    const nextRootReducer = require('../reducers');
-  //    store.replaceReducer(nextRootReducer);
-  //  });
-  //}
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('../reducers', () => {
+      const nextRootReducer = require('../reducers');
+      store.replaceReducer(nextRootReducer);
+    });
+  }
 
   return store;
 }

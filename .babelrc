@@ -2,5 +2,10 @@
   "presets": ["es2015", "react"],
   "plugins": [
       ["transform-decorators-legacy"]
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [ "babel-plugin-rewire" ]
+    }
+  }
 }
