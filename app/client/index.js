@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Immutable from 'immutable';
 
-window.__DEV__ = true;
-
 import {configureStore} from '../common/store'
 import Router from 'react-router/lib/Router'
 import browserHistory from 'react-router/lib/browserHistory'

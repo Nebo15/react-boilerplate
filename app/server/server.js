@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import Express from 'express';
 import path from 'path';
 

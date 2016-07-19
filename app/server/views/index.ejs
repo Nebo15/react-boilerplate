@@ -18,7 +18,9 @@
         content="Boilerplate for universal React application, using react-router, redux and Express"/>
 
 
-  <!--<link rel="stylesheet" href="/build/style.css">-->
+  <% resources.css.forEach(function(src){ %>
+  <link rel="stylesheet" href="<%= src %>">
+  <% }) %>
 
 </head>
 <body class="is-home">
