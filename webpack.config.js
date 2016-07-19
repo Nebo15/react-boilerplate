@@ -25,7 +25,8 @@ var config = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(env),
-      __DEV__: DEBUG
+      __DEV__: DEBUG,
+      __CLIENT__: true
     }),
     new AssetsPlugin({ path: path.join(__dirname, 'static') })
   ],
