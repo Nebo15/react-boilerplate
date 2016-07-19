@@ -1,4 +1,4 @@
-# react-boilerplate
+# React Boilerplate
 
 Boilerplate for React Univeral application, that is using Redux, React-router and Express
 
