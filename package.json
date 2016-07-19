@@ -11,7 +11,14 @@
   "author": "Alexey Bondarenko <alexeybondarenko@me.com> (http://bondalex.com/)",
   "license": "MIT",
   "dependencies": {
+    "assets-webpack-plugin": "3.4.0",
+    "babel-core": "6.10.4",
+    "babel-loader": "6.2.4",
+    "babel-plugin-react-transform": "2.0.2",
+    "babel-plugin-transform-decorators-legacy": "1.3.4",
     "babel-polyfill": "6.9.1",
+    "babel-preset-es2015": "6.9.0",
+    "babel-preset-react": "6.11.1",
     "babel-register": "6.9.0",
     "bluebird": "3.4.1",
     "cross-env": "2.0.0",
@@ -26,20 +33,12 @@
     "react": "15.2.1",
     "react-dom": "15.2.1",
     "react-redux": "4.4.5",
-    "react-router": "2.5.2",
+    "react-router": "2.6.0",
     "redux": "3.5.2",
     "redux-freeze": "0.1.4",
     "redux-immutable": "3.0.6",
     "redux-thunk": "2.1.0",
-
-    "webpack": "1.13.1",
-    "assets-webpack-plugin": "3.4.0",
-    "babel-core": "6.10.4",
-    "babel-loader": "6.2.4",
-    "babel-plugin-react-transform": "2.0.2",
-    "babel-plugin-transform-decorators-legacy": "1.3.4",
-    "babel-preset-es2015": "6.9.0",
-    "babel-preset-react": "6.11.1"
+    "webpack": "1.13.1"
   },
   "devDependencies": {
     "babel-preset-react-hmre": "1.1.1",

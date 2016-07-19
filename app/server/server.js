@@ -32,15 +32,11 @@ let resources  = {
   css: []
 };
 
-if ( process.env.NODE_ENV === 'production' ) {
-  const assets = require('../../static/webpack-assets.json');
-  resources.js.push('/static/' + assets.app.js);
-} else {
-  resources.js = resources.js.concat([
-    'http://localhost:3030/static/dev.js',
-    'http://localhost:3030/static/app.js'
-  ])
-}
+const assets = require('../../static/webpack-assets.json');
+Object.keys(assets).map(function (key) {
+  assets[key].js && resources.js.push(assets[key].js);
+  assets[key].css && resources.js.push(assets[key].css);
+});
 
 server.use('/static', Express.static(path.join(__dirname, '../../static')));
 server.use('/api', apiRoutes);

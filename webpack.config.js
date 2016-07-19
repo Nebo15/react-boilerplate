@@ -19,13 +19,15 @@ var config = {
   },
   output: {
     path: path.join(__dirname, 'static'),
+    pathPublic: '/static/',
     filename: DEBUG ? '[name].js' : '[name].[chunkhash].js'
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(env),
       __DEV__: DEBUG
-    })
+    }),
+    new AssetsPlugin({ path: path.join(__dirname, 'static') })
   ],
   module: {
     loaders: [
@@ -53,7 +55,7 @@ if (DEBUG) {
     //  filname: 'vendor.js'
     //})
   ]);
-  config.output.publicPath = 'http://localhost:3030/static';
+  config.output.publicPath = 'http://localhost:3030/static/';
   config.module.loaders[0].query = {
     "env": {
       "development": {
@@ -67,8 +69,7 @@ if (DEBUG) {
     //  name: 'vendor',
     //  filname: '[name].[chunkhash].js'
     //}),
-    new webpack.optimize.UglifyJsPlugin(),
-    new AssetsPlugin({ path: path.join(__dirname, 'static') })
+    new webpack.optimize.UglifyJsPlugin()
   ]);
 }
 
