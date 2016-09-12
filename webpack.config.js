@@ -4,6 +4,11 @@ var path = require('path');
 var webpack = require('webpack');
 var AssetsPlugin = require('assets-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var autoprefixer = require('autoprefixer');
+var precss       = require('precss');
+var postCssNested = require('postcss-nested');
+var postCssApply = require('postcss-apply');
+var postCssVariables = require('postcss-css-variables');
 
 var extractSASS = new ExtractTextPlugin('[name].[hash].css');
 
@@ -30,9 +35,6 @@ var config = {
     }),
     new AssetsPlugin({path: path.join(__dirname, 'static')})
   ],
-  Sassport: {
-    indentedSyntax: true
-  },
   module: {
     loaders: [
       {
@@ -41,8 +43,8 @@ var config = {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/,
-        loaders: ['style', 'css?localIdentName=[local]__[path][name]__[hash:base64:5]&modules&importLoaders=1&sourceMap']
+        test: /\.scss/,
+        loaders: ['style', 'css?localIdentName=[local]__[path][name]__[hash:base64:5]&modules&importLoaders=1&sourceMap', 'postcss']
       },
       {
         test: /\.(woff|woff2|eot|ttf)(\?.*$|$)/,
@@ -53,6 +55,9 @@ var config = {
         loader: 'file?name=[name].[ext]?[hash]'
       }
     ]
+  },
+  postcss: function () {
+    return [precss, autoprefixer, postCssNested, postCssVariables, postCssApply];
   }
 };
 
