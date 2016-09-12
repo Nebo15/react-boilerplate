@@ -1,7 +1,5 @@
 
-import {combineReducers} from 'redux-immutable'
+import {combineReducers} from 'redux'
 
-import posts from './posts'
-export default combineReducers({
-  posts
-})
+const defaultReducer = (state) => state;
+export default defaultReducer;

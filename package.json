@@ -4,7 +4,8 @@
   "description": "Boilerplate for React app, that is using Redux, React-router and Express",
   "repository": "https://github.com/Nebo15/react-boilerplate.git",
   "scripts": {
-    "dev": "concurrently --kill-others \"nodemon app/server\" \"node webpack.server.js\"",
+    "predev": "npm run webpack",
+    "dev": "concurrently --kill-others \"node app/server\" \"node webpack.server.js\"",
     "start": "cross-env NODE_ENV=production npm run webpack && node app/server",
     "webpack": "webpack"
   },
@@ -30,12 +31,13 @@
     "express": "4.14.0",
     "extract-text-webpack-plugin": "1.0.1",
     "history": "3.0.0",
-    "immutable": "3.8.1",
+    "ignore-styles": "^5.0.1",
     "isomorphic-fetch": "2.2.1",
     "normalizr": "2.2.0",
     "path": "0.12.7",
     "react": "15.2.1",
     "react-dom": "15.2.1",
+    "react-hot-loader": "^1.3.0",
     "react-redux": "4.4.5",
     "react-router": "2.6.0",
     "redux": "3.5.2",
@@ -43,6 +45,7 @@
     "redux-immutable": "3.0.6",
     "redux-thunk": "2.1.0",
     "sassport-loader": "0.2.0",
+    "style-loader": "^0.13.1",
     "webpack": "1.13.1"
   },
   "devDependencies": {

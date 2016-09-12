@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 import Express from 'express';
 import path from 'path';
 
@@ -20,11 +18,11 @@ import Provider from 'react-redux/lib/components/Provider';
 import {configureStore} from '../common/store';
 import routes from '../common/routes'
 
-import apiRoutes from './api';
+import {PORT} from '../common/config'
 
 let server = new Express();
 
-server.set('port', process.env.PORT || 8080);
+server.set('port', PORT);
 
 server.set('views', path.join(__dirname, 'views'));
 server.set('view engine', 'ejs');
@@ -41,8 +39,10 @@ Object.keys(assets).map(function (key) {
 });
 
 server.use('/static', Express.static(path.join(__dirname, '../../static')));
-server.use('/api', apiRoutes);
+
 server.get('*', function (req, res, next) {
+
+  if (__DEV__) return res.render('index', {html: null, reduxState: null, resources});
 
   let history = useRouterHistory(useQueries(createMemoryHistory))();
   let store = configureStore();
@@ -86,9 +86,7 @@ server.get('*', function (req, res, next) {
         let { query, params } = renderProps;
 
         let comp = renderProps.components[renderProps.components.length - 1].WrappedComponent;
-        let promise = comp.fetchData ?
-          comp.fetchData({query, params, store, history}) :
-          Promise.resolve();
+        let promise = comp && comp.fetchData && comp.fetchData({query, params, store, history}) || Promise.resolve();
 
         return promise;
       }
