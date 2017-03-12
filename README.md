@@ -1,5 +1,7 @@
 # React Boilerplate
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Nebo15/react-boilerplate.svg)](https://greenkeeper.io/)
+
 Boilerplate for React Univeral application, that is using Redux, React Router and Express
 
 **Demo**: https://nebo15-react-boilerplate.herokuapp.com/
